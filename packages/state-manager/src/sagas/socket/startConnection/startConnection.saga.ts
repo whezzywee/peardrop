@@ -20,6 +20,7 @@ import { usersMasterSaga } from '../../users/users.master.saga'
 import { usersActions } from '../../users/users.slice'
 import { filesActions } from '../../files/files.slice'
 import { networkActions } from '../../network/network.slice'
+import { musicSaga } from '../../music/music.saga'
 import {
   type ResponseLaunchCommunityPayload,
   type ChannelMessageIdsResponse,
@@ -243,6 +244,7 @@ export function* useIO(socket: Socket): Generator {
       fork(errorsMasterSaga),
       fork(captchaMasterSaga, socket),
       fork(pushNotificationsMasterSaga, socket),
+      fork(musicSaga, socket),
     ])
   } finally {
     logger.info('useIO stopping')

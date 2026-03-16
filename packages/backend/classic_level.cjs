@@ -11,8 +11,15 @@ if (process.platform === 'darwin' || process.platform === 'ios') {
   arch = 'universal'
 }
 
-let binaryPath = path.normalize(path.join(__dirname, '/deps', process.platform, arch, 'classic-level', 'classic_level.node'))
+// Try prebuilds first (for prebuilt binaries)
+let binaryPath = path.normalize(path.join(__dirname, 'prebuilds', `${process.platform}-${arch}`, 'node.napi.node'))
 let exists = fs.existsSync(binaryPath)
+
+// Fallback to deps structure
+if (!exists) {
+  binaryPath = path.normalize(path.join(__dirname, '/deps', process.platform, arch, 'classic-level', 'classic_level.node'))
+  exists = fs.existsSync(binaryPath)
+}
 
 if (!exists && process.platform === 'android') {
   // Get rid of extra nesting levels

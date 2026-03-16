@@ -6,6 +6,16 @@
     "target": "ES2020",
     "strict": true,
     "useUnknownInCatchVariables": false,
+    "baseUrl": ".",
+    "paths": {
+      "@quiet/types": ["../types/lib"],
+      "@quiet/common": ["../common/lib"],
+      "@quiet/logger": ["../logger/lib"],
+      "@quiet/identity": ["../identity/lib"],
+      "@quiet/state-manager": ["../state-manager/lib"],
+      "@quiet/node-common": ["../node-common/lib"],
+      "@quiet/backend": ["../backend/lib"]
+    },
     "typeRoots": [
       "../@types",
       "./node_modules/@types"

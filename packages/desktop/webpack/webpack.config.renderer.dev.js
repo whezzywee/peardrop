@@ -20,6 +20,14 @@ module.exports = {
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.jsx'],
     plugins: [new TsconfigPathsPlugin({ configFile: 'tsconfig.build.json' })],
+    alias: {
+      '@quiet/state-manager': path.resolve(__dirname, '../../state-manager/lib'),
+      '@quiet/types': path.resolve(__dirname, '../../types/lib'),
+      '@quiet/common': path.resolve(__dirname, '../../common/lib'),
+      '@quiet/logger': path.resolve(__dirname, '../../logger/lib'),
+      '@quiet/identity': path.resolve(__dirname, '../../identity/lib'),
+      '@quiet/node-common': path.resolve(__dirname, '../../node-common/lib'),
+    },
   },
   module: {
     rules: [

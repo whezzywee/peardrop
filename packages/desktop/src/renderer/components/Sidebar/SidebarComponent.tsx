@@ -1,6 +1,9 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 import { styled } from '@mui/material/styles'
 import Grid from '@mui/material/Grid'
+import IconButton from '@mui/material/IconButton'
+import MusicNoteIcon from '@mui/icons-material/MusicNote'
 
 import { Scrollbars } from 'rc-scrollbars'
 import { AutoSizer } from 'react-virtualized'
@@ -50,11 +53,22 @@ const StyledGrid = styled(Grid)(({ theme }) => ({
 const SidebarComponent: React.FC<
   IdentityPanelProps & ChannelsPanelProps & TorStatusProps & UserProfilePanelProps & DirectMessagesPanelProps
 > = ({ ...props }) => {
+  const navigate = useNavigate()
+  
   return (
     <StyledGrid container direction='column' className={classes.root}>
       <Grid item xs container direction='column' className={classes.padding}>
         <Grid item>
           <IdentityPanel {...props} />
+        </Grid>
+        <Grid item>
+          <IconButton
+            onClick={() => navigate('/main/music')}
+            style={{ color: 'white', width: '100%', justifyContent: 'flex-start', padding: '8px 16px' }}
+          >
+            <MusicNoteIcon style={{ marginRight: 8 }} />
+            Music Rooms
+          </IconButton>
         </Grid>
         <Grid item xs container direction='column'>
           <AutoSizer>

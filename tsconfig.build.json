@@ -1,6 +1,16 @@
 {
   "compilerOptions": {
     "baseUrl": ".",
+    "paths": {
+      "@quiet/types": ["packages/types/lib"],
+      "@quiet/common": ["packages/common/lib"],
+      "@quiet/logger": ["packages/logger/lib"],
+      "@quiet/identity": ["packages/identity/lib"],
+      "@quiet/node-common": ["packages/node-common/lib"],
+      "@quiet/state-manager": ["packages/state-manager/lib"],
+      "@quiet/backend": ["packages/backend/lib"],
+      "@quiet/helia": ["packages/helia/lib"]
+    },
     "target": "ES2020",
     "module": "commonjs",
     "declaration": true,

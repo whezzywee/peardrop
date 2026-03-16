@@ -19,6 +19,9 @@ const webpackConfig = env => {
     output: {
       path: path.resolve(__dirname, 'lib'),
       filename: '[name].cjs',
+      library: {
+        type: 'commonjs2',
+      },
     },
     // We don't use minimization because we lose access to meaningful logs in production.
     optimization: {
@@ -26,6 +29,22 @@ const webpackConfig = env => {
     },
     resolve: {
       extensions: ['.ts', '.js'],
+      modules: [
+        path.resolve(__dirname, 'node_modules'),
+        path.resolve(__dirname, '../helia/node_modules'),
+        'node_modules',
+      ],
+      alias: {
+        'helia': path.resolve(__dirname, '../helia/lib'),
+        '@quiet/types': path.resolve(__dirname, '../types/lib'),
+        '@quiet/common': path.resolve(__dirname, '../common/lib'),
+        '@quiet/logger': path.resolve(__dirname, '../logger/lib'),
+        '@quiet/identity': path.resolve(__dirname, '../identity/lib'),
+        '@quiet/state-manager': path.resolve(__dirname, '../state-manager/lib'),
+        '@quiet/node-common': path.resolve(__dirname, '../node-common/lib'),
+        '3rd-party/auth/packages/auth/dist': path.resolve(__dirname, '../../3rd-party/auth/packages/auth/dist'),
+        '3rd-party/auth/packages/crdx/dist': path.resolve(__dirname, '../../3rd-party/auth/packages/crdx/dist'),
+      },
     },
     module: {
       rules: [
@@ -35,6 +54,7 @@ const webpackConfig = env => {
             loader: 'ts-loader',
             options: {
               configFile: 'tsconfig.build.json',
+              transpileOnly: true,
             },
           },
           exclude: [/node_modules/, /packages[\/\\]identity/, /packages[\/\\]state-manager/, /packages[\/\\]logger/],
@@ -75,7 +95,7 @@ const webpackConfig = env => {
     },
     plugins: [
       new webpack.NormalModuleReplacementPlugin(
-        /node_modules[\/\\]classic-level[\/\\]binding.js/,
+        /node_modules[\/\\].*[\/\\]classic-level[\/\\]binding\.js/,
         root('classic_level.cjs')
       ),
       new webpack.NormalModuleReplacementPlugin(

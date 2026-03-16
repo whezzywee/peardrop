@@ -45,6 +45,10 @@ import { filesSelectors } from './sagas/files/files.selectors'
 import { networkActions, networkReducer } from './sagas/network/network.slice'
 import { networkSelectors } from './sagas/network/network.selectors'
 
+import { musicReducer, musicActions, MusicState } from './sagas/music/music.slice'
+import { musicSelectors } from './sagas/music/music.selectors'
+import { musicSaga } from './sagas/music/music.saga'
+
 // Workaround for "The inferred type of '(...)' cannot be named without a reference to
 // 'packages/identity/node_modules/pkijs/build'. This is likely not portable. A type annotation is necessary."
 // https://github.com/microsoft/TypeScript/issues/47663#issuecomment-1270716220
@@ -171,6 +175,15 @@ export const pushNotifications = {
   actions: _pushNotificationsActions,
 }
 
+export const music = {
+  reducer: musicReducer,
+  actions: musicActions,
+  selectors: musicSelectors,
+  sagas: musicSaga,
+}
+
+export type { MusicState } from './sagas/music/music.slice'
+
 export const socket = {
   useIO,
 }
@@ -190,4 +203,5 @@ export default {
   storeKeys,
   settings,
   network,
+  music,
 }

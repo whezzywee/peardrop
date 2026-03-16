@@ -7,6 +7,7 @@ import Grid from '@mui/material/Grid'
 import WindowWrapper from '../ui/WindowWrapper/WindowWrapper'
 import Sidebar from '../Sidebar/Sidebar'
 import Channel from '../Channel/Channel'
+import { MusicRoom } from '../MusicRoom'
 
 const MainGridStyled = styled(Grid)(() => ({
   minHeight: '100vh',
@@ -59,6 +60,7 @@ export const Main: React.FC = () => {
           <Grid item xs>
             <Routes>
               <Route path={'channel/:id'} element={<Channel />} />
+              <Route path={'music'} element={<MusicRoom />} />
             </Routes>
           </Grid>
         </MainGridStyled>
